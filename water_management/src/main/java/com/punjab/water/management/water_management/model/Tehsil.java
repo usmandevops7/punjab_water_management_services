@@ -32,6 +32,6 @@ public class Tehsil {
     private District district;
 
     @OneToMany(mappedBy = "tehsil", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Union_council> union_councils;
+    private List<UnionCouncil> union_councils;
 
 }

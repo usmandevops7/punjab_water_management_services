@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Water_resource {
+public class WaterResource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +49,6 @@ public class Water_resource {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "water_resource_type_id")
-    private Water_resource_type water_resource_type;
+    private WaterResourceType waterResourceType;
 
 }

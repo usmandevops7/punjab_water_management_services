@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Farmer_water_report {
+public class FarmerWaterReport {
 
     @Id
     @Column(nullable = false)
@@ -55,6 +55,6 @@ public class Farmer_water_report {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uc_id")
-    private Union_council union_council;
+    private UnionCouncil unionCouncil;
 
 }

@@ -29,6 +29,6 @@ public class Terrain {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uc_id")
-    private Union_council union_council;
+    private UnionCouncil unionCouncil;
 
 }

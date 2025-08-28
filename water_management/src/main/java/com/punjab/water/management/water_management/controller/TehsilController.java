@@ -22,7 +22,7 @@ public class TehsilController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tehsil> getTehsilById(@PathVariable String id) {
+    public ResponseEntity<Tehsil> getTehsilById(@PathVariable Long id) {
         Optional<Tehsil> tehsil = tehsilService.findById(id);
         return tehsil.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,11 @@ public class TehsilController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tehsil> updateTehsil(@PathVariable String id, @RequestBody Tehsil tehsil) {
+    public ResponseEntity<Tehsil> updateTehsil(@PathVariable Long id, @RequestBody Tehsil tehsil) {
         Optional<Tehsil> existingTehsil = tehsilService.findById(id);
         if (existingTehsil.isPresent()) {
-            // The ID from path variable will be used for the update
+            // Set the ID from path variable to ensure we update the correct record
+            tehsil.setTehsil_id(id);
             Tehsil updatedTehsil = tehsilService.save(tehsil);
             return ResponseEntity.ok(updatedTehsil);
         }
@@ -45,7 +46,7 @@ public class TehsilController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTehsil(@PathVariable String id) {
+    public ResponseEntity<Void> deleteTehsil(@PathVariable Long id) {
         Optional<Tehsil> tehsil = tehsilService.findById(id);
         if (tehsil.isPresent()) {
             tehsilService.deleteById(id);

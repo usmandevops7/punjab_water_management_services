@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Union_council {
+public class UnionCouncil {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,13 +36,13 @@ public class Union_council {
     @JoinColumn(name = "tehsil_id")
     private Tehsil tehsil;
 
-    @OneToMany(mappedBy = "union_council", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "unionCouncil", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Farmer> farmers;
 
-    @OneToMany(mappedBy = "union_council", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Farmer_water_report> farmer_water_reports;
+    @OneToMany(mappedBy = "unionCouncil", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<FarmerWaterReport> farmerWaterReports;
 
-    @OneToMany(mappedBy = "union_council", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "unionCouncil", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Terrain> terrains;
 
 }

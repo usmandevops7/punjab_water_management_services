@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Water_resource_type {
+public class WaterResourceType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Water_resource_type {
     @Column(nullable = false)
     private String water_resource_type_name_ur;
 
-    @OneToMany(mappedBy = "water_resource_type", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Water_resource> water_resources;
+    @OneToMany(mappedBy = "waterResourceType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<WaterResource> waterResources;
 
 }

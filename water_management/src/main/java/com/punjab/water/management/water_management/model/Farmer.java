@@ -34,9 +34,9 @@ public class Farmer {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uc_id")
-    private Union_council union_council;
+    private UnionCouncil unionCouncil;
 
     @OneToMany(mappedBy = "farmer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Farmer_water_report> farmer_water_reports;
+    private List<FarmerWaterReport> farmerWaterReports;
 
 }

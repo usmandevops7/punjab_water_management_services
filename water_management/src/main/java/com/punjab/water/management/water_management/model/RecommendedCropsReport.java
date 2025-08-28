@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Recommended_crops_report {
+public class RecommendedCropsReport {
 
     @Id
     @Column(nullable = false)
@@ -32,6 +32,6 @@ public class Recommended_crops_report {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "report_id")
-    private Farmer_water_report farmer_water_report;
+    private FarmerWaterReport farmerWaterReport;
 
 }
