@@ -22,7 +22,7 @@ public class UnionCouncilController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UnionCouncil> getUnionCouncilById(@PathVariable Long id) {
+    public ResponseEntity<UnionCouncil> getUnionCouncilById(@PathVariable Integer id) {
         Optional<UnionCouncil> unionCouncil = unionCouncilService.findById(id);
         return unionCouncil.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,10 @@ public class UnionCouncilController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UnionCouncil> updateUnionCouncil(@PathVariable Long id, @RequestBody UnionCouncil unionCouncil) {
+    public ResponseEntity<UnionCouncil> updateUnionCouncil(@PathVariable Integer id, @RequestBody UnionCouncil unionCouncil) {
         Optional<UnionCouncil> existingUnionCouncil = unionCouncilService.findById(id);
         if (existingUnionCouncil.isPresent()) {
-            // The ID from path variable will be used for the update
+            unionCouncil.setUc_id(id);
             UnionCouncil updatedUnionCouncil = unionCouncilService.save(unionCouncil);
             return ResponseEntity.ok(updatedUnionCouncil);
         }
@@ -45,7 +45,7 @@ public class UnionCouncilController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUnionCouncil(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUnionCouncil(@PathVariable Integer id) {
         Optional<UnionCouncil> unionCouncil = unionCouncilService.findById(id);
         if (unionCouncil.isPresent()) {
             unionCouncilService.deleteById(id);

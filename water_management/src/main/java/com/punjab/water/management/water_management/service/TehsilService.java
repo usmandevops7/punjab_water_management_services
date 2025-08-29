@@ -17,7 +17,7 @@ public class TehsilService {
         return tehsilRepository.findAll();
     }
 
-    public Optional<Tehsil> findById(Long id) {
+    public Optional<Tehsil> findById(Integer id) {
         return tehsilRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class TehsilService {
         return tehsilRepository.save(tehsil);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         tehsilRepository.deleteById(id);
     }
 

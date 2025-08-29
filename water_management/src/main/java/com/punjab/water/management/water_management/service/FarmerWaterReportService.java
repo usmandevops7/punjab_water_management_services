@@ -17,7 +17,7 @@ public class FarmerWaterReportService {
         return farmerWaterReportRepository.findAll();
     }
 
-    public Optional<FarmerWaterReport> findById(String id) {
+    public Optional<FarmerWaterReport> findById(Integer id) {
         return farmerWaterReportRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class FarmerWaterReportService {
         return farmerWaterReportRepository.save(farmerWaterReport);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Integer id) {
         farmerWaterReportRepository.deleteById(id);
     }
 

@@ -22,7 +22,7 @@ public class FarmerWaterReportController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FarmerWaterReport> getFarmerWaterReportById(@PathVariable String id) {
+    public ResponseEntity<FarmerWaterReport> getFarmerWaterReportById(@PathVariable Integer id) {
         Optional<FarmerWaterReport> farmerWaterReport = farmerWaterReportService.findById(id);
         return farmerWaterReport.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,10 @@ public class FarmerWaterReportController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FarmerWaterReport> updateFarmerWaterReport(@PathVariable String id, @RequestBody FarmerWaterReport farmerWaterReport) {
+    public ResponseEntity<FarmerWaterReport> updateFarmerWaterReport(@PathVariable Integer id, @RequestBody FarmerWaterReport farmerWaterReport) {
         Optional<FarmerWaterReport> existingFarmerWaterReport = farmerWaterReportService.findById(id);
         if (existingFarmerWaterReport.isPresent()) {
-            // The ID from path variable will be used for the update
+            farmerWaterReport.setReport_id(id);
             FarmerWaterReport updatedFarmerWaterReport = farmerWaterReportService.save(farmerWaterReport);
             return ResponseEntity.ok(updatedFarmerWaterReport);
         }
@@ -45,7 +45,7 @@ public class FarmerWaterReportController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFarmerWaterReport(@PathVariable String id) {
+    public ResponseEntity<Void> deleteFarmerWaterReport(@PathVariable Integer id) {
         Optional<FarmerWaterReport> farmerWaterReport = farmerWaterReportService.findById(id);
         if (farmerWaterReport.isPresent()) {
             farmerWaterReportService.deleteById(id);

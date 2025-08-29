@@ -16,22 +16,23 @@ import java.time.LocalDateTime;
 public class FarmerWaterReport {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private String report_id;
+    private Integer report_id;
 
     @Column(nullable = false)
-    private String farmer_id;
+    private Integer farmer_id;
 
     @Column(nullable = false)
-    private String uc_id;
+    private Integer uc_id;
 
     @Column(nullable = false)
-    private String terrain_id;
+    private Integer terrain_id;
 
     @Column(nullable = false)
-    private String season_id;
+    private Integer season_id;
 
-    private String wish_crop_id;
+    private Integer wish_crop_id;
 
     private LocalDateTime generated_on;
 

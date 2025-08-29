@@ -15,16 +15,19 @@ import java.util.Set;
 public class RecommendedCropsReport {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private String rec_id;
+    private Integer rec_id;
 
     @Column(nullable = false)
-    private String report_id;
+    private Integer report_id;
 
     @Column(nullable = false)
-    private String crop_id;
+    private Integer crop_id;
 
     private String reason;
+
+    private String notes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "crop_id")

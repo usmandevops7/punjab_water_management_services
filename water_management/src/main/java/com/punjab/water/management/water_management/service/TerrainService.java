@@ -17,7 +17,7 @@ public class TerrainService {
         return terrainRepository.findAll();
     }
 
-    public Optional<Terrain> findById(String id) {
+    public Optional<Terrain> findById(Integer id) {
         return terrainRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class TerrainService {
         return terrainRepository.save(terrain);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Integer id) {
         terrainRepository.deleteById(id);
     }
 

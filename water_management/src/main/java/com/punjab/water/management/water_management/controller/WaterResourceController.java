@@ -37,7 +37,7 @@ public class WaterResourceController {
     public ResponseEntity<WaterResource> updateWaterResource(@PathVariable Integer id, @RequestBody WaterResource waterResource) {
         Optional<WaterResource> existingWaterResource = waterResourceService.findById(id);
         if (existingWaterResource.isPresent()) {
-            // The ID from path variable will be used for the update
+            waterResource.setId(id);
             WaterResource updatedWaterResource = waterResourceService.save(waterResource);
             return ResponseEntity.ok(updatedWaterResource);
         }

@@ -17,7 +17,7 @@ public class SeasonService {
         return seasonRepository.findAll();
     }
 
-    public Optional<Season> findById(String id) {
+    public Optional<Season> findById(Integer id) {
         return seasonRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class SeasonService {
         return seasonRepository.save(season);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Integer id) {
         seasonRepository.deleteById(id);
     }
 

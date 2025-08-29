@@ -2,6 +2,7 @@ package com.punjab.water.management.water_management.controller;
 
 import com.punjab.water.management.water_management.model.Division;
 import com.punjab.water.management.water_management.service.DivisionService;
+import com.punjab.water.management.water_management.utils.GeometryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class DivisionController {
     public ResponseEntity<Division> updateDivision(@PathVariable Integer id, @RequestBody Division division) {
         Optional<Division> existingDivision = divisionService.findById(id);
         if (existingDivision.isPresent()) {
-            // The ID from path variable will be used for the update
+            division.setId(id);
             Division updatedDivision = divisionService.save(division);
             return ResponseEntity.ok(updatedDivision);
         }
@@ -50,6 +51,34 @@ public class DivisionController {
         if (division.isPresent()) {
             divisionService.deleteById(id);
             return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/{id}/boundary")
+    public ResponseEntity<Division> updateDivisionBoundary(@PathVariable Integer id, @RequestBody String boundaryWkt) {
+        Optional<Division> existingDivision = divisionService.findById(id);
+        if (existingDivision.isPresent()) {
+            Division division = existingDivision.get();
+            
+            // Validate the WKT geometry
+            if (!GeometryUtils.isValidWkt(boundaryWkt)) {
+                return ResponseEntity.badRequest().build();
+            }
+            
+            division.setBoundary(boundaryWkt);
+            Division updatedDivision = divisionService.save(division);
+            return ResponseEntity.ok(updatedDivision);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/boundary/area")
+    public ResponseEntity<Double> getDivisionArea(@PathVariable Integer id) {
+        Optional<Division> division = divisionService.findById(id);
+        if (division.isPresent() && division.get().getBoundary() != null) {
+            Double area = GeometryUtils.calculateArea(division.get().getBoundary());
+            return ResponseEntity.ok(area);
         }
         return ResponseEntity.notFound().build();
     }

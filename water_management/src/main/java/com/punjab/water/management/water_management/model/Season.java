@@ -15,8 +15,9 @@ import java.util.Set;
 public class Season {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private String season_id;
+    private Integer season_id;
 
     @Column(nullable = false)
     private String season_name;

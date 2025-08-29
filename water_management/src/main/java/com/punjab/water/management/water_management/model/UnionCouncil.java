@@ -17,7 +17,7 @@ public class UnionCouncil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long uc_id;
+    private Integer uc_id;
 
     @Column(nullable = false)
     private String uc_name;
@@ -31,6 +31,9 @@ public class UnionCouncil {
     private Integer pp;
 
     private Integer na;
+
+    @Column(columnDefinition = "geometry")
+    private String boundary;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tehsil_id")

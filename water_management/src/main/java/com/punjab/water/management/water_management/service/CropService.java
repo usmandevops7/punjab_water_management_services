@@ -17,7 +17,7 @@ public class CropService {
         return cropRepository.findAll();
     }
 
-    public Optional<Crop> findById(String id) {
+    public Optional<Crop> findById(Integer id) {
         return cropRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class CropService {
         return cropRepository.save(crop);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Integer id) {
         cropRepository.deleteById(id);
     }
 

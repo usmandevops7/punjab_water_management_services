@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 import java.util.Set;
 import com.fasterxml.jackson.databind.JsonNode;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "water_resource")
@@ -33,6 +34,7 @@ public class WaterResource {
 
     private Integer total_length;
 
+    @Column(columnDefinition = "geography")
     private String coordinates;
 
     private String water_quality;
@@ -45,6 +47,10 @@ public class WaterResource {
 
     private Integer cca;
 
+    @Column(columnDefinition = "geometry")
+    private String boundary;
+
+    @Column(columnDefinition = "json")
     private JsonNode meta_data;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -17,7 +17,7 @@ public class District {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long district_id;
+    private Integer district_id;
 
     @Column(nullable = false)
     private String district_name;
@@ -25,6 +25,9 @@ public class District {
     private Integer division_id;
 
     private String district_name_ur;
+
+    @Column(columnDefinition = "geometry")
+    private String boundary;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "division_id")

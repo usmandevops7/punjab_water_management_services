@@ -15,8 +15,9 @@ import java.util.Set;
 public class Crop {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private String crop_id;
+    private Integer crop_id;
 
     @Column(nullable = false)
     private String crop_name;

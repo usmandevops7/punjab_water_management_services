@@ -22,7 +22,7 @@ public class RecommendedCropsReportController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RecommendedCropsReport> getRecommendedCropsReportById(@PathVariable String id) {
+    public ResponseEntity<RecommendedCropsReport> getRecommendedCropsReportById(@PathVariable Integer id) {
         Optional<RecommendedCropsReport> recommendedCropsReport = recommendedCropsReportService.findById(id);
         return recommendedCropsReport.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,10 @@ public class RecommendedCropsReportController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RecommendedCropsReport> updateRecommendedCropsReport(@PathVariable String id, @RequestBody RecommendedCropsReport recommendedCropsReport) {
+    public ResponseEntity<RecommendedCropsReport> updateRecommendedCropsReport(@PathVariable Integer id, @RequestBody RecommendedCropsReport recommendedCropsReport) {
         Optional<RecommendedCropsReport> existingRecommendedCropsReport = recommendedCropsReportService.findById(id);
         if (existingRecommendedCropsReport.isPresent()) {
-            // The ID from path variable will be used for the update
+            recommendedCropsReport.setRec_id(id);
             RecommendedCropsReport updatedRecommendedCropsReport = recommendedCropsReportService.save(recommendedCropsReport);
             return ResponseEntity.ok(updatedRecommendedCropsReport);
         }
@@ -45,7 +45,7 @@ public class RecommendedCropsReportController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRecommendedCropsReport(@PathVariable String id) {
+    public ResponseEntity<Void> deleteRecommendedCropsReport(@PathVariable Integer id) {
         Optional<RecommendedCropsReport> recommendedCropsReport = recommendedCropsReportService.findById(id);
         if (recommendedCropsReport.isPresent()) {
             recommendedCropsReportService.deleteById(id);

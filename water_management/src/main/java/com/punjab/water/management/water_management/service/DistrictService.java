@@ -17,7 +17,7 @@ public class DistrictService {
         return districtRepository.findAll();
     }
 
-    public Optional<District> findById(String id) {
+    public Optional<District> findById(Integer id) {
         return districtRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class DistrictService {
         return districtRepository.save(district);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Integer id) {
         districtRepository.deleteById(id);
     }
 

@@ -15,17 +15,21 @@ import java.util.Set;
 public class Terrain {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private String terrain_id;
+    private Integer terrain_id;
 
     @Column(nullable = false)
-    private String uc_id;
+    private Integer uc_id;
 
     @Column(nullable = false)
     private String soil_type;
 
     @Column(nullable = false)
     private String land_type;
+
+    @Column(columnDefinition = "geometry")
+    private String boundary;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uc_id")

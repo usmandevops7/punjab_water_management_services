@@ -25,6 +25,9 @@ public class Division {
     @Column(nullable = false)
     private String division_name_ur;
 
+    @Column(columnDefinition = "geometry")
+    private String boundary;
+
     @OneToMany(mappedBy = "division", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<District> districts;
 

@@ -22,7 +22,7 @@ public class SeasonController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Season> getSeasonById(@PathVariable String id) {
+    public ResponseEntity<Season> getSeasonById(@PathVariable Integer id) {
         Optional<Season> season = seasonService.findById(id);
         return season.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,10 @@ public class SeasonController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Season> updateSeason(@PathVariable String id, @RequestBody Season season) {
+    public ResponseEntity<Season> updateSeason(@PathVariable Integer id, @RequestBody Season season) {
         Optional<Season> existingSeason = seasonService.findById(id);
         if (existingSeason.isPresent()) {
-            // The ID from path variable will be used for the update
+            season.setSeason_id(id);
             Season updatedSeason = seasonService.save(season);
             return ResponseEntity.ok(updatedSeason);
         }
@@ -45,7 +45,7 @@ public class SeasonController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSeason(@PathVariable String id) {
+    public ResponseEntity<Void> deleteSeason(@PathVariable Integer id) {
         Optional<Season> season = seasonService.findById(id);
         if (season.isPresent()) {
             seasonService.deleteById(id);

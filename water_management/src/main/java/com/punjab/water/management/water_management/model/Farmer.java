@@ -17,7 +17,7 @@ public class Farmer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long farmer_id;
+    private Integer farmer_id;
 
     @Column(nullable = false)
     private String name;

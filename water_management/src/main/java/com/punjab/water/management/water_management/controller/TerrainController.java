@@ -22,7 +22,7 @@ public class TerrainController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Terrain> getTerrainById(@PathVariable String id) {
+    public ResponseEntity<Terrain> getTerrainById(@PathVariable Integer id) {
         Optional<Terrain> terrain = terrainService.findById(id);
         return terrain.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,10 @@ public class TerrainController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Terrain> updateTerrain(@PathVariable String id, @RequestBody Terrain terrain) {
+    public ResponseEntity<Terrain> updateTerrain(@PathVariable Integer id, @RequestBody Terrain terrain) {
         Optional<Terrain> existingTerrain = terrainService.findById(id);
         if (existingTerrain.isPresent()) {
-            // The ID from path variable will be used for the update
+            terrain.setTerrain_id(id);
             Terrain updatedTerrain = terrainService.save(terrain);
             return ResponseEntity.ok(updatedTerrain);
         }
@@ -45,7 +45,7 @@ public class TerrainController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTerrain(@PathVariable String id) {
+    public ResponseEntity<Void> deleteTerrain(@PathVariable Integer id) {
         Optional<Terrain> terrain = terrainService.findById(id);
         if (terrain.isPresent()) {
             terrainService.deleteById(id);

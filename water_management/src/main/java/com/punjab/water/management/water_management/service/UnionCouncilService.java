@@ -17,7 +17,7 @@ public class UnionCouncilService {
         return unionCouncilRepository.findAll();
     }
 
-    public Optional<UnionCouncil> findById(Long id) {
+    public Optional<UnionCouncil> findById(Integer id) {
         return unionCouncilRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class UnionCouncilService {
         return unionCouncilRepository.save(unionCouncil);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         unionCouncilRepository.deleteById(id);
     }
 

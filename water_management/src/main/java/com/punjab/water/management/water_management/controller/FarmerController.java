@@ -22,7 +22,7 @@ public class FarmerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Farmer> getFarmerById(@PathVariable String id) {
+    public ResponseEntity<Farmer> getFarmerById(@PathVariable Integer id) {
         Optional<Farmer> farmer = farmerService.findById(id);
         return farmer.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,10 @@ public class FarmerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Farmer> updateFarmer(@PathVariable String id, @RequestBody Farmer farmer) {
+    public ResponseEntity<Farmer> updateFarmer(@PathVariable Integer id, @RequestBody Farmer farmer) {
         Optional<Farmer> existingFarmer = farmerService.findById(id);
         if (existingFarmer.isPresent()) {
-            // The ID from path variable will be used for the update
+            farmer.setFarmer_id(id);
             Farmer updatedFarmer = farmerService.save(farmer);
             return ResponseEntity.ok(updatedFarmer);
         }
@@ -45,7 +45,7 @@ public class FarmerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFarmer(@PathVariable String id) {
+    public ResponseEntity<Void> deleteFarmer(@PathVariable Integer id) {
         Optional<Farmer> farmer = farmerService.findById(id);
         if (farmer.isPresent()) {
             farmerService.deleteById(id);

@@ -22,7 +22,7 @@ public class CropController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Crop> getCropById(@PathVariable String id) {
+    public ResponseEntity<Crop> getCropById(@PathVariable Integer id) {
         Optional<Crop> crop = cropService.findById(id);
         return crop.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -34,10 +34,10 @@ public class CropController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Crop> updateCrop(@PathVariable String id, @RequestBody Crop crop) {
+    public ResponseEntity<Crop> updateCrop(@PathVariable Integer id, @RequestBody Crop crop) {
         Optional<Crop> existingCrop = cropService.findById(id);
         if (existingCrop.isPresent()) {
-            // The ID from path variable will be used for the update
+            crop.setCrop_id(id);
             Crop updatedCrop = cropService.save(crop);
             return ResponseEntity.ok(updatedCrop);
         }
@@ -45,7 +45,7 @@ public class CropController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCrop(@PathVariable String id) {
+    public ResponseEntity<Void> deleteCrop(@PathVariable Integer id) {
         Optional<Crop> crop = cropService.findById(id);
         if (crop.isPresent()) {
             cropService.deleteById(id);

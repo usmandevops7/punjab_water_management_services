@@ -17,7 +17,7 @@ public class Tehsil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long tehsil_id;
+    private Integer tehsil_id;
 
     @Column(nullable = false)
     private String tehsil_name;
@@ -26,6 +26,9 @@ public class Tehsil {
     private Integer district_id;
 
     private String tehsil_name_ur;
+
+    @Column(columnDefinition = "geometry")
+    private String boundary;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "district_id")

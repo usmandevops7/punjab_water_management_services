@@ -17,7 +17,7 @@ public class RecommendedCropsReportService {
         return recommendedCropsReportRepository.findAll();
     }
 
-    public Optional<RecommendedCropsReport> findById(String id) {
+    public Optional<RecommendedCropsReport> findById(Integer id) {
         return recommendedCropsReportRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class RecommendedCropsReportService {
         return recommendedCropsReportRepository.save(recommendedCropsReport);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Integer id) {
         recommendedCropsReportRepository.deleteById(id);
     }
 
